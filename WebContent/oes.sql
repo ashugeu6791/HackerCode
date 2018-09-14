@@ -32,9 +32,9 @@ use oes;
 
 CREATE TABLE IF NOT EXISTS `users` (
   `u_id` int NOT NULL AUTO_INCREMENT,
-  `userName` varchar(32) NOT NULL,
+  `username` varchar(32) NOT NULL,
   `password` varchar(32) DEFAULT NULL,
-  `userType` varchar(32) DEFAULT 'STUDENT',
+  `usertype` varchar(32) DEFAULT 'student',
   primary key(u_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `adminlogin`
 --
 
-INSERT INTO `users` (`u_id`,`userName`, `password`,`userType`) VALUES
-(1,'root', '63a9f0ea7bb98050796b649e85481845','ADMIN'),
-(2,'sharat_ag', 'd2cb3e7530dd79e4449a01e6ebf50163','STUDENT');
+INSERT INTO `users` (`u_id`,`username`, `password`,`usertype`) VALUES
+(1,'root', '63a9f0ea7bb98050796b649e85481845','admin'),
+(2,'toor', '63a9f0ea7bb98050796b649e85481845','student');
 
 -- --------------------------------------------------------
 

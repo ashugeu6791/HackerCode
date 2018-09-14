@@ -42,23 +42,22 @@ public class HelloController extends AbstractController{
         pass = Util.covertToMd5(pass);
         String confirmPass = request.getParameter("confirm-password");
         if(confirmPass==null) {
-        	pass = Util.covertToMd5(pass);
+        	//pass = Util.covertToMd5(pass);
         	try{
 	        	Boolean userExists =   cdao.isUserExists(email);  //checkUserPresent(email,pass);
 	        	if(userExists==false){
 	        		return wrongUserPass();
 	        	}
 	        	Admin user = cdao.getUser(email,pass);
-	        	/*String userType = user.getUserType();
+	        	String userType = user.getUserType();
 	        	if(userType.equals(Constants.ADMIN)){	
 	        		return setAdminSpecificData(user);
 	        	}
 	        	else if(userType.equals(Constants.STUDENT)){
 	        		 return setStudentSpecificData();
-	        	}*/
-	        	System.out.println("inside login");
-	        	modelandview = new ModelAndView("hello");
-	        	return modelandview;
+	        	}
+	        	log.info("Inside login");
+	        	
         	} catch(Exception e){
         			log.error(e);
         			System.out.println("Cannot find the user "+e);
@@ -68,10 +67,11 @@ public class HelloController extends AbstractController{
         	//System.out.println("inside Register ");
         	String username = request.getParameter("username");
         	cdao.registerNewUser(email,username,pass);
-        	modelandview = new ModelAndView("hello");
+        	modelandview = new ModelAndView("student_dashboard");
         	return modelandview;
         }
-		return null;
+      //  modelandview = new ModelAndView("student_dashboard");
+    	return null;
 	}
    
 	
@@ -131,6 +131,7 @@ public class HelloController extends AbstractController{
 		Util.setParameters(modelandview,Admin);
 		Util.setStatBoxParameters(modelandview, statBox);*/
 		//commonDao.setLastLogin(user.getId());
+    	modelandview = new ModelAndView("admin_dashboard2");
 		return modelandview;
 	}
 	
@@ -142,7 +143,7 @@ public class HelloController extends AbstractController{
 	
 	private ModelAndView setStudentSpecificData() {
 		// TODO Auto-generated method stub
-    	modelandview =new ModelAndView("admin_data");
+    	modelandview =new ModelAndView("student_dashboard");
 		return modelandview;
 	}
 }

@@ -96,6 +96,7 @@ public class CommonDaoImpl implements CommonDao{
 		try
 		{
 			user = jdbcTemplate.queryForObject(AdminSql.GET_USER, params, types, new AdminMapper());
+			log.info("User Retrived successfully");
 		}catch(Exception e)
 		{
 			System.out.println(e.getMessage());
