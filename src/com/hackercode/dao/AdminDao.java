@@ -5,7 +5,7 @@ import com.hackercode.structures.Admin;
 public interface AdminDao {
 	
 	
-	public Admin getAdminPass(String userName);
+	//public Admin getAdminPass(String userName);
 	
 	
 }

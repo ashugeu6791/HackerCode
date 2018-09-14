@@ -22,21 +22,21 @@ public class CommonServiceImpl {
 		return commonDao.getUser(email,password);
 	}
 	
-	public static boolean setLastLogin(Long id){
+	/*public static boolean setLastLogin(Long id){
 		return commonDao.setLastLogin(id);
 	}
 	
 	public static Long getUserId(String email){
 		return commonDao.getUserId(email);
-	}
+	}*/
 	
 	public static void setCommonDao(CommonDao commonDao) {
 		CommonServiceImpl.commonDao = commonDao;
 	}
 
-	public static Admin getUserById(int u_id) {
+	/*public static Admin getUserById(int u_id) {
 		return commonDao.getUserById(u_id);
-	}
+	}*/
 
 	public boolean registerNewUser(String email, String username, String pass) {
 		return commonDao.registerNewUser(email,username,pass);

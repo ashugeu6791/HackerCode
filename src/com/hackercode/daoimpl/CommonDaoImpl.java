@@ -68,23 +68,6 @@ public class CommonDaoImpl implements CommonDao{
 		return userType;
 	}
 
-	@Override
-	public Long getUserId(String email) {
-		// TODO Auto-generated method stub
-		Long userId = null;
-		Object [] params = new Object [] {email};
-		int [] types = new int [] {Types.VARCHAR} ;
-		try
-		{
-			userId = jdbcTemplate.queryForObject(AdminSql.GET_USER_ID,params,types,Long.class);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Error happened in getting User ID for user name="+email+"   "+e);
-		}
-	
-		return userId;
-	}
 
 	@Override
 	public Admin getUser(String email, String password) {
@@ -105,7 +88,43 @@ public class CommonDaoImpl implements CommonDao{
 		return user;
 	}
 
-	public boolean setLastLogin(Long id) {
+	@Override
+	public boolean registerNewUser(String email, String username, String password) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		Object [] params = new Object [] {username, password, "Student"};		
+		int [] types = new int [] {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR} ;
+		//User user=null;
+		Boolean user=false;
+		try{
+			jdbcTemplate.update(AdminSql.REGISTER_NEW_USER, params, types);
+		}catch(Exception e){
+			log.error("CommonDaoImpl.registerNewUser method error DB Exception "+e);
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+	/*	@Override
+	public Long getUserId(String email) {
+		// TODO Auto-generated method stub
+		Long userId = null;
+		Object [] params = new Object [] {email};
+		int [] types = new int [] {Types.VARCHAR} ;
+		try
+		{
+			userId = jdbcTemplate.queryForObject(AdminSql.GET_USER_ID,params,types,Long.class);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error happened in getting User ID for user name="+email+"   "+e);
+		}
+	
+		return userId;
+	}
+*/
+	
+/*	public boolean setLastLogin(Long id) {
 		// TODO Auto-generated method stub
 		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 		Object [] params = new Object [] {timestamp,id};
@@ -139,25 +158,8 @@ public class CommonDaoImpl implements CommonDao{
 		
 		return user;
 	}
+*/
 
-
-	@Override
-	public boolean registerNewUser(String email, String username, String password) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-		jdbcTemplate = new JdbcTemplate(dataSource);
-		Object [] params = new Object [] {username, password, "Student"};		
-		int [] types = new int [] {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR} ;
-		//User user=null;
-		Boolean user=false;
-		try{
-			jdbcTemplate.update(AdminSql.REGISTER_NEW_USER, params, types);
-		}catch(Exception e){
-			log.error("CommonDaoImpl.registerNewUser method error DB Exception "+e);
-			System.out.println(e.getMessage());
-		}
-		return false;
-	}
 
 
 }

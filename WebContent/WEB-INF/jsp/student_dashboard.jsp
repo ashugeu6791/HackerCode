@@ -6,9 +6,8 @@
    </head>
    
    <body>
-   <%@include file="header.jsp" %>
-      <h2>${message}</h2>
-      It worked
+   
+      <a>Take Test</a>
       <%@include file="footer.jsp" %>
    </body>
 </html>

@@ -25,7 +25,7 @@ public class AdminDaoImpl implements AdminDao{
 	      this.dataSource = dataSource;
 	}
 	
-	public Admin getAdminPass(String email) {
+	/*public Admin getAdminPass(String email) {
 		// TODO Auto-generated method stub
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		Object [] params = new Object [] {email};
@@ -42,6 +42,6 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		
 		return admin;
-	}
+	}*/
 
 }
