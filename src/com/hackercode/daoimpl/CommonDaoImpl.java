@@ -7,9 +7,9 @@ import java.util.Calendar;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import com.hackercode.dao.CommonDao;
 import com.hackercode.mappers.AdminMapper;
 import com.hackercode.sql.AdminSql;
@@ -19,6 +19,7 @@ import com.hackercode.structures.Admin;
 
 public class CommonDaoImpl implements CommonDao{
 		
+	static Logger log = Logger.getLogger(CommonDao.class.getName());
 	@Autowired
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
@@ -30,12 +31,11 @@ public class CommonDaoImpl implements CommonDao{
 	
 
 	@Override
-	public Boolean isUserExists(String email, String password) {
+	public Boolean isUserExists(String email) {
 		// TODO Auto-generated method stub
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		Object [] params = new Object [] {email,password};
-		int [] types = new int [] {Types.VARCHAR,Types.VARCHAR} ;
-		
+		Object [] params = new Object [] {email};
+		int [] types = new int [] {Types.VARCHAR} ;
 		//User user=null;
 		Boolean user=false;
 		try
@@ -43,6 +43,7 @@ public class CommonDaoImpl implements CommonDao{
 			user = (Boolean)jdbcTemplate.queryForObject(AdminSql.FIND_USER_EXIST, params, types, Boolean.class);
 		}catch(Exception e)
 		{
+			log.error("CommonDaoImpl.isUserExists method DB Exception "+e);
 			System.out.println(e.getMessage());
 		}
 		
@@ -86,10 +87,10 @@ public class CommonDaoImpl implements CommonDao{
 	}
 
 	@Override
-	public Admin getUser(String email) {
+	public Admin getUser(String email, String password) {
 		// TODO Auto-generated method stub
-		Object [] params = new Object [] {email};
-		int [] types = new int [] {Types.VARCHAR};
+		Object [] params = new Object [] {email, password};
+		int [] types = new int [] {Types.VARCHAR,Types.VARCHAR};
 		
 		Admin user=null;
 		try
@@ -136,6 +137,25 @@ public class CommonDaoImpl implements CommonDao{
 		}
 		
 		return user;
+	}
+
+
+	@Override
+	public boolean registerNewUser(String email, String username, String password) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		Object [] params = new Object [] {username, password, "Student"};		
+		int [] types = new int [] {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR} ;
+		//User user=null;
+		Boolean user=false;
+		try{
+			jdbcTemplate.update(AdminSql.REGISTER_NEW_USER, params, types);
+		}catch(Exception e){
+			log.error("CommonDaoImpl.registerNewUser method error DB Exception "+e);
+			System.out.println(e.getMessage());
+		}
+		return false;
 	}
 
 

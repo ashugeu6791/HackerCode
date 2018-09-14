@@ -30,7 +30,7 @@ use oes;
 -- Table structure for table `adminlogin`
 --
 
-CREATE TABLE IF NOT EXISTS `adminlogin` (
+CREATE TABLE IF NOT EXISTS `users` (
   `u_id` int NOT NULL AUTO_INCREMENT,
   `userName` varchar(32) NOT NULL,
   `password` varchar(32) DEFAULT NULL,
@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `adminlogin` (
 -- Dumping data for table `adminlogin`
 --
 
-INSERT INTO `adminlogin` (`u_id`,`userName`, `password`,`userType`) VALUES
-(1,'root', 'dbd2c348e12a58a674b6771fbeecb736','ADMIN'),
+INSERT INTO `users` (`u_id`,`userName`, `password`,`userType`) VALUES
+(1,'root', '63a9f0ea7bb98050796b649e85481845','ADMIN'),
 (2,'sharat_ag', 'd2cb3e7530dd79e4449a01e6ebf50163','STUDENT');
 
 -- --------------------------------------------------------

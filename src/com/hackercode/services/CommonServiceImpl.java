@@ -1,22 +1,25 @@
 package com.hackercode.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hackercode.dao.CommonDao;
 import com.hackercode.structures.Admin;
 
 public class CommonServiceImpl {
 
+	@Autowired
 	public static CommonDao commonDao;
 
-	public static Boolean isUserExists(String email,String password){
-		return commonDao.isUserExists(email, password);
+	public  Boolean isUserExists(String email){
+		return commonDao.isUserExists(email);
 	}
 	
 	public static String getUserType(int userId){
 		return commonDao.getUserType(userId);
 	}
 	
-	public static Admin getUser(String email){
-		return commonDao.getUser(email);
+	public  Admin getUser(String email, String password){
+		return commonDao.getUser(email,password);
 	}
 	
 	public static boolean setLastLogin(Long id){
@@ -32,8 +35,11 @@ public class CommonServiceImpl {
 	}
 
 	public static Admin getUserById(int u_id) {
-		// TODO Auto-generated method stub
 		return commonDao.getUserById(u_id);
+	}
+
+	public boolean registerNewUser(String email, String username, String pass) {
+		return commonDao.registerNewUser(email,username,pass);
 	}
 	
 }
