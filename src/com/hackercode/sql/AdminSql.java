@@ -15,8 +15,7 @@ public interface AdminSql {
 	
 	public static final String GET_USER = "SELECT * FROM users WHERE userName=? and password=?";
 	
-	//public static final String GET_USER_BY_ID = "SELECT CASE WHEN EXISTS ("+
-	//		"SELECT * FROM users WHERE username=? and password=?) THEN 'True' ELSE 'False' END";
+	public static final String GET_USER_BY_ID = "SELECT * FROM users WHERE u_id=?";
 	
 	//public static final String UPADTE_LAST_LOGIN = "SELECT CASE WHEN EXISTS ("+
 	//		"SELECT * FROM users WHERE username=? and password=?) THEN 'True' ELSE 'False' END";

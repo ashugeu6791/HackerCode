@@ -15,17 +15,20 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:view-controller path="/" view-name="login"/>
    
-  <bean class = "org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+  <bean id="urlMapping"  class = "org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
       <property name = "mappings">
          <props>
             <prop key = "/hello">helloController</prop>
+             <prop key="addFields.rpc">TestController</prop>
          </props>
       </property>
    </bean>
+	
+	<bean id="TestController" class="com.hackercode.controller.TestController">
+		<property name="isAddFieldActive" value="1"/>
+	</bean>
 
-   <bean id = "helloController" class = "com.hackercode.controller.HelloController" />
-
-   
+  	<bean id = "helloController" class = "com.hackercode.controller.HelloController" />
 	
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  

@@ -7,13 +7,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 import org.apache.log4j.Logger;
 
 import com.hackercode.constants.Constants;
 import com.hackercode.services.CommonServiceImpl;
-import com.hackercode.structures.Admin;
+import com.hackercode.structures.User;
 import com.hackercode.util.Util;
 
 
@@ -48,7 +52,7 @@ public class HelloController extends AbstractController{
 	        	if(userExists==false){
 	        		return wrongUserPass();
 	        	}
-	        	Admin user = cdao.getUser(email,pass);
+	        	User user = cdao.getUser(email,pass);
 	        	String userType = user.getUserType();
 	        	if(userType.equals(Constants.ADMIN)){	
 	        		return setAdminSpecificData(user);
@@ -74,7 +78,6 @@ public class HelloController extends AbstractController{
     	return null;
 	}
    
-	
 	/*public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException {
     	
@@ -121,7 +124,7 @@ public class HelloController extends AbstractController{
 	}
     
     
-    private ModelAndView setAdminSpecificData(Admin user) {
+    private ModelAndView setAdminSpecificData(User user) {
 		// TODO Auto-generated method stub
     	/*
     	user = AdminServiceImpl.getUserDetail(user.getEmail());

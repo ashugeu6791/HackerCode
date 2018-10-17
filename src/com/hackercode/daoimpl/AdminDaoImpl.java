@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 import com.hackercode.dao.AdminDao;
 import com.hackercode.mappers.AdminMapper;
 import com.hackercode.sql.AdminSql;
-import com.hackercode.structures.Admin;
+import com.hackercode.structures.User;
+import com.hackercode.structures.UserDetail;
 
 @Component
 public class AdminDaoImpl implements AdminDao{
@@ -23,6 +24,13 @@ public class AdminDaoImpl implements AdminDao{
 	
 	public void setDataSource(DataSource dataSource) {
 	      this.dataSource = dataSource;
+	}
+
+
+	@Override
+	public UserDetail getUserDetail(String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	/*public Admin getAdminPass(String email) {

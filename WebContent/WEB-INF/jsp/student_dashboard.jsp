@@ -7,7 +7,10 @@
    
    <body>
    
-      <a>Take Test</a>
-      <%@include file="footer.jsp" %>
+      <form action="addFields.rpc?user=${user}&id=103" method="post">
+		   	 
+	    <input type="submit"/>
+	</form>
+      
    </body>
 </html>

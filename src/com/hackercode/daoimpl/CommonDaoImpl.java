@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.hackercode.dao.CommonDao;
 import com.hackercode.mappers.AdminMapper;
 import com.hackercode.sql.AdminSql;
-import com.hackercode.structures.Admin;
+import com.hackercode.structures.User;
 
 
 
@@ -70,12 +70,12 @@ public class CommonDaoImpl implements CommonDao{
 
 
 	@Override
-	public Admin getUser(String email, String password) {
+	public User getUser(String email, String password) {
 		// TODO Auto-generated method stub
 		Object [] params = new Object [] {email, password};
 		int [] types = new int [] {Types.VARCHAR,Types.VARCHAR};
 		
-		Admin user=null;
+		User user=null;
 		try
 		{
 			user = jdbcTemplate.queryForObject(AdminSql.GET_USER, params, types, new AdminMapper());
@@ -139,18 +139,18 @@ public class CommonDaoImpl implements CommonDao{
 			System.out.println(e.getMessage());
 		}
 		return false;
-	}
+	}*/
 
 	@Override
-	public Admin getUserById(int u_id) {
+	public User getUserById(int u_id) {
 		// TODO Auto-generated method stub
 		Object [] params = new Object [] {u_id};
 		int [] types = new int [] {Types.NUMERIC};
 		
-		Admin user=null;
+		User user=null;
 		try
 		{
-			user = (Admin)jdbcTemplate.queryForObject(AdminSql.GET_USER_BY_ID, params, types, new AdminMapper());
+			user = (User)jdbcTemplate.queryForObject(AdminSql.GET_USER_BY_ID, params, types, new AdminMapper());
 		}catch(Exception e)
 		{
 			System.out.println(e.getMessage());
@@ -158,7 +158,7 @@ public class CommonDaoImpl implements CommonDao{
 		
 		return user;
 	}
-*/
+
 
 
 
